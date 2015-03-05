@@ -8,49 +8,39 @@
     tools:context="com.teamwagdin.owner.futureproofrel.EntryTrackerActivity"
     android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textView4" />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <EditText
-            android:layout_width="360dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:layout_weight="1" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-
-            <DatePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/datePicker" />
-
-            <TimePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/timePicker" />
-        </LinearLayout>
-
-    </LinearLayout>
-
     <Chronometer
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/chronometer" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+
+            <DatePicker
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:id="@+id/datePicker" />
+
+            <TimePicker
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/timePicker" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -67,30 +57,16 @@
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView3" />
-
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="50dp"
         android:id="@+id/listView1"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.16" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView2" />
+        android:layout_gravity="center_horizontal" />
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="50dp"
         android:id="@+id/listView2"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.16" />
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
