@@ -14,6 +14,12 @@ public class SomeAccount {
     } // ??? <-- Should not be instantiable by anything other than the "SomeApplication" class
 
 
+    public List<Entry> getPastEntries() {
+        return entryDatabase.getPastEntries();
+    }
+    public List<Entry> getFutureEntries() {
+        return entryDatabase.getFutureEntries();
+    }
     public List<Entry> getAllEntries() {
         return entryDatabase.getAllEntries();
     }

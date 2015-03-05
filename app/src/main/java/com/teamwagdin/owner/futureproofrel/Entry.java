@@ -29,4 +29,10 @@ public class Entry {
         Date Q = new Date(System.currentTimeMillis());
     }
     */
+
+
+    @Override
+    public String toString() {
+        return message+" | "+targetDate;
+    }
 }

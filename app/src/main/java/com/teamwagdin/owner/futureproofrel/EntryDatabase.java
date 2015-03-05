@@ -13,6 +13,13 @@ public class EntryDatabase {
     private ArrayList<Entry> allFutureEntries = new ArrayList<Entry>();
 
 
+
+    public List<Entry> getPastEntries() {
+        return allPastEntries;
+    }
+    public List<Entry> getFutureEntries() {
+        return allFutureEntries;
+    }
     public List<Entry> getAllEntries() {
         ArrayList<Entry> theseEntries = new ArrayList<Entry>();
         //
