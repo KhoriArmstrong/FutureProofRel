@@ -11,6 +11,10 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main_activity2" >
         </activity>
+        <activity
+            android:name=".EntryTrackerActivity"
+            android:label="@string/title_activity_entry_tracker" >
+        </activity>
     </application>
 
 </manifest>
