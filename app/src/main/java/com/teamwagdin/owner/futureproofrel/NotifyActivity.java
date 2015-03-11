@@ -38,7 +38,7 @@ public class NotifyActivity extends ActionBarActivity {
 
 
 
-        TimeChecker tc = new TimeChecker(current.getTime(),);
+        // TimeChecker tc = new TimeChecker(current.getTime(),);
 
 
     }
