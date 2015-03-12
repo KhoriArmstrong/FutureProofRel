@@ -1,11 +1,15 @@
 package com.teamwagdin.owner.futureproofrel;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -14,33 +18,65 @@ import java.util.Calendar;
 
 public class NotifyActivity extends ActionBarActivity {
 
+    SomeApplication theApp;
+    TimeChecker tc;
+    Context c;
     private TextView tvCurrentTime;
     private EditText etMessage;
+    MyNotification mn;
 
-
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify);
 
 
+        theApp = SomeApplication.createInstance();
+        tc = new TimeChecker(SomeApplication.getPresentDateTime(),SomeApplication.getPresentDateTime());
+
+        c = this;
+        //
+        mn = new MyNotification(c, new Intent(c,NotifyActivity.class));
+
+        ((Chronometer)findViewById(R.id.chronometer2)).start();
+        ((Chronometer)findViewById(R.id.chronometer2)).setOnChronometerTickListener( new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+
+                tc.currentTime = theApp.getPresentDateTime();
+                //
+                ((TextView)findViewById(R.id.tvCurrentTime)).setText("Current time: " + tc.currentTime);
+                ((TextView)findViewById(R.id.tvTargetTime)).setText("Target time: " + tc.targetTime);
 
 
-        Calendar current = Calendar.getInstance();
+                if (tc.timeHasPassed()) {
+                    // TODO: Display the notification-- But ONLY once!
+
+                    if(!mn.hasDisplay()) {
+                        mn.Display();
+                    }
+                    //etMessage = (EditText) findViewById(R.id.etMessage);
+                }
+            }
+        });
+    }
 
 
+    public void setNewTime(View view) {
+        EntryDate ed;
+         // TODO: THIS is what we need to create.
+        //
+        int day= Integer.parseInt(((TextView) findViewById(R.id.txtDay)).getText().toString());
+        int month= Integer.parseInt(((TextView)findViewById(R.id.txtMonth)).getText().toString());
+        int hour= Integer.parseInt(((TextView)findViewById(R.id.txtHour)).getText().toString());
+        int min= Integer.parseInt(((TextView)findViewById(R.id.txtMinute)).getText().toString());
+        int year= Integer.parseInt(((TextView)findViewById(R.id.txtYear)).getText().toString());
 
-        tvCurrentTime = (TextView) findViewById(R.id.currenttime);
-        tvCurrentTime.setText("" + current.getTime());
+        ed = new EntryDate(month,day,year,hour,min);
 
 
-        etMessage = (EditText) findViewById(R.id.etMessage);
-
-
-
-        TimeChecker tc = new TimeChecker(current.getTime(),);
-
-
+        tc.targetTime = ed;
     }
 
 
