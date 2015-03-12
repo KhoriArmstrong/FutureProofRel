@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.teamwagdin.owner.futureproofrel.HomePageActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:text="I&apos;m screen 1: Home Page "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_weight="0.05" />
+
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="349dp"
+        android:layout_height="wrap_content"
+        android:text="Click me I'm screen 2: Entry Tracker"
+        android:layout_weight="0.08" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="354dp"
+        android:layout_height="wrap_content"
+        android:text="Click me I'm screen 3: Login and Register"
+        android:layout_weight="0.09" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="358dp"
+        android:layout_height="84dp"
+        android:text="Click me I'm screen 4: Entry Alarm" />
+
+
+</LinearLayout>

@@ -12,8 +12,16 @@
             android:label="@string/title_activity_main_activity2" >
         </activity>
         <activity
-            android:name=".EntryTrackerActivity"
-            android:label="@string/title_activity_entry_tracker" >
+            android:name=".LoginValidationTest"
+            android:label="@string/title_activity_login_validation_test" >
+        </activity>
+        <activity
+            android:name=".HomeScreenActivity"
+            android:label="@string/title_activity_home_screen" >
+        </activity>
+        <activity
+            android:name=".HomePageActivity"
+            android:label="@string/title_activity_home_page" >
         </activity>
     </application>
 
