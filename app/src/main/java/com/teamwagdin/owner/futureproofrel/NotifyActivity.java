@@ -33,7 +33,7 @@ public class NotifyActivity extends ActionBarActivity {
 
 
         theApp = SomeApplication.createInstance();
-        tc = new TimeChecker(SomeApplication.getPresentDateTime(),SomeApplication.getPresentDateTime());
+        tc = new TimeChecker(SomeApplication.getPresentDateTime(),EntryDate.NEVER);
 
         c = this;
         //
@@ -53,10 +53,13 @@ public class NotifyActivity extends ActionBarActivity {
                 if (tc.timeHasPassed()) {
                     // TODO: Display the notification-- But ONLY once!
 
+
+
                     if(!mn.hasDisplay()) {
+                        mn.m = ((EditText)findViewById(R.id.txtMessage)).getText().toString();
+                        //
                         mn.Display();
                     }
-                    //etMessage = (EditText) findViewById(R.id.etMessage);
                 }
             }
         });
@@ -68,7 +71,7 @@ public class NotifyActivity extends ActionBarActivity {
          // TODO: THIS is what we need to create.
         //
         int day= Integer.parseInt(((TextView) findViewById(R.id.txtDay)).getText().toString());
-        int month= Integer.parseInt(((TextView)findViewById(R.id.txtMonth)).getText().toString());
+        int month= Integer.parseInt(((TextView)findViewById(R.id.txtMonth)).getText().toString())-1;
         int hour= Integer.parseInt(((TextView)findViewById(R.id.txtHour)).getText().toString());
         int min= Integer.parseInt(((TextView)findViewById(R.id.txtMinute)).getText().toString());
         int year= Integer.parseInt(((TextView)findViewById(R.id.txtYear)).getText().toString());

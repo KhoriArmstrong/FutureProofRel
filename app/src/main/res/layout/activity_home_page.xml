@@ -19,21 +19,22 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="349dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Click me I'm screen 2: Entry Tracker"
         android:layout_weight="0.08" />
     <Button
         android:id="@+id/button2"
-        android:layout_width="354dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Click me I'm screen 3: Login and Register"
-        android:layout_weight="0.09" />
+        android:layout_weight="0.08" />
     <Button
         android:id="@+id/button3"
-        android:layout_width="358dp"
-        android:layout_height="84dp"
-        android:text="Click me I'm screen 4: Entry Alarm" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Click me I'm screen 4: Entry Alarm"
+        android:layout_weight="0.08" />
 
 
 </LinearLayout>

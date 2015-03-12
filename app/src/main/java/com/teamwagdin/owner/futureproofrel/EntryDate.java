@@ -18,6 +18,10 @@ public class EntryDate {
     int hour = 0;
     int minute = 0;
 
+
+    public static final EntryDate NEVER = new EntryDate(DECEMBER, 31, 9999, 23, 50);
+
+
     public EntryDate() {
         Date d = new Date();
         //

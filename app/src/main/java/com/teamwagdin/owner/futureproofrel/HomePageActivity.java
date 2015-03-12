@@ -35,32 +35,27 @@ public class HomePageActivity extends ActionBarActivity
         button3 = (Button) findViewById(R.id.button3);
 
         button1.setOnClickListener(new OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(context, EntryTrackerActivity.class);
-                startActivity(intent);
+                context.startActivity(intent);
 
             }
-
         });
 
         button2.setOnClickListener(new OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
-                Intent intent1 = new Intent(context, LoginValidationTest.class);
-                startActivity(intent1);
+                Intent intent1 = new Intent(context, WorkLoginValidationActivity.class);
+                context.startActivity(intent1);
             }
-
         });
 
         button3.setOnClickListener(new OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
-                Intent intent2 = new Intent(context, EntryAlarm.class);
-                startActivity(intent2);
+                Intent intent2 = new Intent(context, NotifyActivity.class);
+                context.startActivity(intent2);
             }
         });
     }

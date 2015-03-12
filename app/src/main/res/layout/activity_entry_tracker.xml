@@ -130,12 +130,20 @@
         android:text="Past Entries"
         android:id="@+id/textView6" />
 
-    <ListView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:id="@+id/listView1"
-        android:layout_gravity="center_horizontal"
-        android:background="#ff31ff2f" />
+        android:background="#ff000000">
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:id="@+id/listView1"
+            android:background="#ff31ff2f"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -144,12 +152,20 @@
         android:text="Future Entries"
         android:id="@+id/textView7" />
 
-    <ListView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:id="@+id/listView2"
-        android:layout_gravity="center_horizontal"
-        android:background="#ff66bdff" />
+        android:background="#ff000000">
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:id="@+id/listView2"
+            android:background="#ff66bdff"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <Chronometer
         android:layout_width="wrap_content"

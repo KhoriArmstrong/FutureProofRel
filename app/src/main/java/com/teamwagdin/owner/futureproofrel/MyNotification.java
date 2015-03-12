@@ -15,12 +15,12 @@ public class MyNotification {
 
         c = context;
         i = intent;
-
+        m = "Hello";
     }
 
     Context c;
-
     Intent i;
+    public String m;
 
 
     public boolean hasDisplay() {
@@ -37,11 +37,11 @@ public class MyNotification {
         NotificationManager mNotificationManager = (NotificationManager) c.getSystemService(ns);
 
         int icon = R.drawable.ic_launcher;
-        CharSequence tickerText = "Hello"; // ticker-text
+        CharSequence tickerText = m;
         long when = System.currentTimeMillis();
         Context context = c.getApplicationContext();
-        CharSequence contentTitle = "Create notification";
-        CharSequence contentText = "Hello";
+        CharSequence contentTitle = "FutureProof Message!";
+        CharSequence contentText = m;
         Intent notificationIntent = i; // new Intent(this, Example.class);
         PendingIntent contentIntent = PendingIntent.getActivity(c, 0, notificationIntent, 0);
         Notification notification = new Notification(icon, tickerText, when);
