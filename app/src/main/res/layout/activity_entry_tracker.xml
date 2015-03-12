@@ -8,11 +8,6 @@
     tools:context="com.teamwagdin.owner.futureproofrel.EntryTrackerActivity"
     android:weightSum="1">
 
-    <Chronometer
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/chronometer" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -28,7 +23,7 @@
         <EditText
             android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:id="@+id/editText" />
+            android:id="@+id/txtMessage" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText2"
+                android:id="@+id/txtYear"
                 android:layout_weight="1" />
 
             <EditText
@@ -56,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText3"
+                android:id="@+id/txtMonth"
                 android:layout_weight="1" />
 
             <EditText
@@ -64,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText4"
+                android:id="@+id/txtDay"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -86,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText5"
+                android:id="@+id/txtHour"
                 android:layout_weight="1" />
 
             <EditText
@@ -94,18 +89,31 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText6"
+                android:id="@+id/txtMinute"
                 android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:id="@+id/button"
+            android:onClick="performSend" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set to Present"
+            android:onClick="setToPresent"
+            android:id="@+id/button4" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -115,16 +123,38 @@
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/listView1"
-        android:layout_gravity="center_horizontal" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Past Entries"
+        android:id="@+id/textView6" />
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
+        android:id="@+id/listView1"
+        android:layout_gravity="center_horizontal"
+        android:background="#ff31ff2f" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Future Entries"
+        android:id="@+id/textView7" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
         android:id="@+id/listView2"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="#ff66bdff" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer"
+        android:visibility="gone" />
 
 </LinearLayout>

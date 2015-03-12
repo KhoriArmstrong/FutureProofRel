@@ -6,8 +6,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -35,7 +37,7 @@ public class EntryTrackerActivity extends ActionBarActivity {
 
 
         theApp.sendEntry(new Entry(new EntryDate(EntryDate.FEBRUARY,26,2015,15,58), "Hello World-- From Khori"));
-        theApp.sendEntry(new Entry(new EntryDate(EntryDate.MARCH,6,2015,18,10), "Hello World-- From Luke"));
+        theApp.sendEntry(new Entry(new EntryDate(EntryDate.MARCH,6,2016,18,10), "Hello World-- From Luke"));
 
 
         Chronometer c = (Chronometer)findViewById(R.id.chronometer);
@@ -73,6 +75,42 @@ public class EntryTrackerActivity extends ActionBarActivity {
     }
 
 
+
+    public void performSend(View view) {
+        int month = Integer.parseInt(((EditText)findViewById(R.id.txtMonth)).getText().toString());
+        int day = Integer.parseInt(((EditText)findViewById(R.id.txtDay)).getText().toString());
+        int year = Integer.parseInt(((EditText)findViewById(R.id.txtYear)).getText().toString());
+        int hour = Integer.parseInt(((EditText)findViewById(R.id.txtHour)).getText().toString());
+        int minute = Integer.parseInt(((EditText)findViewById(R.id.txtMinute)).getText().toString());
+        //
+        EntryDate newTime = new EntryDate(month-1,day,year,hour,minute);
+        //
+        Entry e = new Entry(newTime,((EditText)findViewById(R.id.txtMessage)).getText().toString());
+
+
+        theApp.sendEntry(e);
+        //
+        updateEntries();
+
+
+        ((EditText)findViewById(R.id.txtMonth)).setText("");
+        ((EditText)findViewById(R.id.txtDay)).setText("");
+        ((EditText)findViewById(R.id.txtYear)).setText("");
+        ((EditText)findViewById(R.id.txtHour)).setText("");
+        ((EditText)findViewById(R.id.txtMinute)).setText("");
+        ((EditText)findViewById(R.id.txtMessage)).setText("");
+    }
+
+    public void setToPresent(View view) {
+        EntryDate ed = theApp.getPresentDateTime();
+        //
+        ((EditText)findViewById(R.id.txtMonth)).setText(""+(ed.month+1));
+        ((EditText)findViewById(R.id.txtDay)).setText(""+ed.day);
+        ((EditText)findViewById(R.id.txtYear)).setText(""+ed.year);
+        ((EditText)findViewById(R.id.txtHour)).setText(""+ed.hour);
+        ((EditText)findViewById(R.id.txtMinute)).setText(""+ed.minute);
+    }
+    // !!! <-- A visual of a clock and numbers which represent the date... When a date field is changed, the clock visually "tunes" itself to that time, as well as the month/year/day numbers flipping through to their correct time
 
 
 
