@@ -22,8 +22,8 @@ public class WorkLoginValidationActivity extends ActionBarActivity {
         setContentView(R.layout.activity_work_login_validation);
 
         theApp = SomeApplication.createInstance();
-        etUser = (EditText)findViewById(R.id.txtusername);
-        etPass = (EditText)findViewById(R.id.txtpassword);
+        etUser = (EditText)findViewById(R.id.txtUsername);
+        etPass = (EditText)findViewById(R.id.txtPassword);
 
 
 
