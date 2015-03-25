@@ -191,8 +191,4 @@ public class FutureProof {
             }
         }
     }
-
-
-
-    public static EntryDate constructedEntryDate = new EntryDate();
 }

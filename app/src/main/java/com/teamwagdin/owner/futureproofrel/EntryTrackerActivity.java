@@ -1,17 +1,26 @@
 package com.teamwagdin.owner.futureproofrel;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.SystemClock;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Chronometer;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TimePicker;
+
+import java.util.Calendar;
 
 
 public class EntryTrackerActivity extends ActionBarActivity {
@@ -89,13 +98,12 @@ public class EntryTrackerActivity extends ActionBarActivity {
     }
 
     public void setToPresent(View view) {
-        EntryDate ed = theApp.getPresentDateTime();
-        //
-        ((EditText)findViewById(R.id.txtMonth)).setText(""+(ed.month+1));
-        ((EditText)findViewById(R.id.txtDay)).setText(""+ed.day);
-        ((EditText)findViewById(R.id.txtYear)).setText(""+ed.year);
-        ((EditText)findViewById(R.id.txtHour)).setText(""+ed.hour);
-        ((EditText)findViewById(R.id.txtMinute)).setText(""+ed.minute);
+        DialogFragment newFragment;
+        newFragment = new TimePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "timePicker");
+
+        newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
     // !!! <-- A visual of a clock and numbers which represent the date... When a date field is changed, the clock visually "tunes" itself to that time, as well as the month/year/day numbers flipping through to their correct time
 
@@ -125,22 +133,53 @@ public class EntryTrackerActivity extends ActionBarActivity {
 
 
 
-    public void whateverTest(View view) {
-        DialogFragment newFragment;
-        newFragment = new TimePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "timePicker");
+    private class TimePickerFragment extends DialogFragment
+            implements TimePickerDialog.OnTimeSetListener {
 
-        newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current time as the default values for the picker
+            final Calendar c = Calendar.getInstance();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+
+            // Create a new instance of TimePickerDialog and return it
+            return new TimePickerDialog(getActivity(), this, hour, minute,
+                    DateFormat.is24HourFormat(getActivity()));
+        }
+
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            // Do something with the time chosen by the user
 
 
-        EntryDate ed = FutureProof.constructedEntryDate;
-        //
-        ((EditText)findViewById(R.id.txtMonth)).setText(""+(ed.month+1));
-        ((EditText)findViewById(R.id.txtDay)).setText(""+ed.day);
-        ((EditText)findViewById(R.id.txtYear)).setText(""+ed.year);
-        ((EditText)findViewById(R.id.txtHour)).setText(""+ed.hour);
-        ((EditText)findViewById(R.id.txtMinute)).setText(""+ed.minute);
+            ((EditText)findViewById(R.id.txtHour)).setText(""+hourOfDay);
+            ((EditText)findViewById(R.id.txtMinute)).setText(""+minute);
+        }
+    }
+
+    private class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            // Do something with the date chosen by the user
+
+
+            ((EditText)findViewById(R.id.txtMonth)).setText(""+(month+1));
+            ((EditText)findViewById(R.id.txtDay)).setText(""+day);
+            ((EditText)findViewById(R.id.txtYear)).setText(""+year);
+        }
     }
 }
 
