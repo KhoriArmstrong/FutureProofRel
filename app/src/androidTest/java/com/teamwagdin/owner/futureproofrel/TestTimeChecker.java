@@ -11,7 +11,7 @@ public class TestTimeChecker extends TestCase {
 
     public void testTimeChecker(){
 
-        TimeChecker tc = new TimeChecker(new EntryDate(),new EntryDate());
+        TimeChecker tc = new TimeChecker(new EntryDate());
 
         assertNotNull(tc);
 
@@ -24,15 +24,14 @@ public class TestTimeChecker extends TestCase {
 
 
 
-        TimeChecker tc = new TimeChecker(new EntryDate(EntryDate.JANUARY,10,1,1,1)
-        ,new EntryDate(EntryDate.JANUARY,1,1,1,1));
+        TimeChecker tc = new TimeChecker(new EntryDate(EntryDate.MARCH,30,2015,9,50));
 
 
 
 
         tc.checkTheTime();
 
-        assertTrue(tc.timeHasPassed());
+        assertTrue(tc.hasTimePassed());
 
 
 

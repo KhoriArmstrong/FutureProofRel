@@ -11,15 +11,13 @@ import android.content.Intent;
  */
 public class MyNotification {
 
-    public MyNotification(Context context, Intent intent) {
-
-        c = context;
-        i = intent;
+    public MyNotification() {
         m = "Hello";
     }
+    public MyNotification(String thisMessage) {
+        m = thisMessage;
+    }
 
-    Context c;
-    Intent i;
     public String m;
 
 
@@ -30,7 +28,7 @@ public class MyNotification {
 
     boolean hasdisplayed = false;
 
-    public void Display() {
+    public void Display(Context c, Intent i) {
 
 
         String ns = Context.NOTIFICATION_SERVICE;

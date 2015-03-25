@@ -30,14 +30,6 @@ public class EntryTrackerActivity extends ActionBarActivity {
 
 
         theApp = SomeApplication.createInstance();
-        //
-        SomeAccount account = theApp.createNewAccount(new SomeForm(new User("Khori")));
-        //
-        theApp.login(account.myForm.myUser);
-
-
-        theApp.sendEntry(new Entry(new EntryDate(EntryDate.FEBRUARY,26,2015,15,58), "Hello World-- From Khori"));
-        theApp.sendEntry(new Entry(new EntryDate(EntryDate.MARCH,6,2016,18,10), "Hello World-- From Luke"));
 
 
         Chronometer c = (Chronometer)findViewById(R.id.chronometer);

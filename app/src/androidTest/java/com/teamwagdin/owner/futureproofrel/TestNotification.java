@@ -10,16 +10,16 @@ public class TestNotification extends AndroidTestCase {
 
     public void testNotification(){
 
-        MyNotification mn = new MyNotification(this.getContext(), new Intent(this.getContext(), TestNotification.class));
+        MyNotification mn = new MyNotification();
 
         assertNotNull(mn);
     }
 
     public void testDisplayNotification(){
 
-        MyNotification mn = new MyNotification(this.getContext(), new Intent(this.getContext(), TestNotification.class));
+        MyNotification mn = new MyNotification();
 
-        mn.Display();
+        mn.Display(this.getContext(), new Intent(this.getContext(), TestNotification.class));
 
 
         assertTrue(mn.hasDisplay());

@@ -92,4 +92,14 @@ public class TestSomeApplication extends TestCase {
         assertTrue( firstAccount.containsEntry(e) && !otherAccount.containsEntry(e) );
     }
 
+
+    public void testNewAlarmCreated() {
+        Entry e = new Entry(EntryDate.NEVER,"Aaaaaaaaaaa");
+        //
+        sa.createEntryAlarm(e);
+
+
+        assertTrue( !sa.allAlarms.isEmpty() );
+    }
+
 }

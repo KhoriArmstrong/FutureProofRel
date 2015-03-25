@@ -14,6 +14,8 @@ import android.view.View.OnClickListener;
 public class HomePageActivity extends ActionBarActivity
 {
 
+    SomeApplication theApp;
+
     Button button1;
     Button button2;
     Button button3;
@@ -22,6 +24,11 @@ public class HomePageActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+
+
+        theApp = SomeApplication.createInstance();
+        //
         addListenerOnButton();
     }
 
@@ -37,25 +44,21 @@ public class HomePageActivity extends ActionBarActivity
         button1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent(context, EntryTrackerActivity.class);
-                context.startActivity(intent);
-
+                theApp.shiftActivity(context, EntryTrackerActivity.class);
             }
         });
 
         button2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent intent1 = new Intent(context, WorkLoginValidationActivity.class);
-                context.startActivity(intent1);
+                theApp.shiftActivity(context, WorkLoginValidationActivity.class);
             }
         });
 
         button3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent intent2 = new Intent(context, NotifyActivity.class);
-                context.startActivity(intent2);
+                theApp.shiftActivity(context, NotifyActivity.class);
             }
         });
     }

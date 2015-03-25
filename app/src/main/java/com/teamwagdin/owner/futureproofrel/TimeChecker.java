@@ -10,40 +10,21 @@ import java.util.Date;
 public class TimeChecker {
 
 
-    EntryDate currentTime;
+    SomeApplication myApplication;
     EntryDate targetTime;
 
-
-    public final int CHECKDELAY = 1000;
-    Handler h;
-    Runnable r;
-    public TimeChecker(EntryDate d1, EntryDate d2 ) {
-        currentTime = d1;
-        targetTime = d2;
-
-
-        h = new Handler();
-        r = new Runnable() {
-            @Override
-            public void run() {
-                checkTheTime();
-                //
-                if (true) { // ??? <-- Will run indefinitely-- Needs a break!
-                    h.postDelayed(r, CHECKDELAY);
-                }
-            }
-        };
-        //
-        h.postDelayed(r,CHECKDELAY);
+    public TimeChecker(EntryDate ed) {
+        targetTime = ed;
     }
 
-    public boolean timeHasPassed(){
+    public boolean hasTimePassed(){
         return timePassed;
     }
 
     boolean timePassed = false;
 
-    public void checkTheTime(){
+    public boolean checkTheTime(){
+        EntryDate currentTime = SomeApplication.getPresentDateTime();
 
         if(currentTime.equals(targetTime) || currentTime.After(targetTime)){
             timePassed = true;
@@ -51,6 +32,7 @@ public class TimeChecker {
             timePassed = false;
         }
 
+        return hasTimePassed();
     }
 
 }
