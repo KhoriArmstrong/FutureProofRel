@@ -26,4 +26,8 @@ public class SomeAccount {
     public boolean containsEntry(Entry thisEntry) {
         return entryDatabase.getAllEntries().contains(thisEntry);
     }
+
+    public void antiquateEntry(Entry thisEntry) {
+        entryDatabase.antiquateEntry(thisEntry);
+    }
 }

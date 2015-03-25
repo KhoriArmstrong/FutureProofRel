@@ -14,6 +14,11 @@ public class EntryAlarm {
         //
         theChecker = new TimeChecker(theEntry.targetDate);
         theNotification = new MyNotification(theEntry.message);
-        //
+    }
+
+
+    public void update() {
+        theChecker.targetTime = theEntry.targetDate;
+        theNotification.m = theEntry.message;
     }
 }

@@ -39,4 +39,9 @@ public class EntryDatabase {
     }
 
 
+    public void antiquateEntry(Entry thisEntry) {
+        if (allFutureEntries.remove(thisEntry)) {
+            allPastEntries.add(thisEntry);
+        }
+    }
 }

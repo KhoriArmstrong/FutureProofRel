@@ -103,6 +103,9 @@ public class SomeApplication {
         //
         createEntryAlarm(thisEntry);
     }
+    public void antiquateEntry(Entry thisEntry) {
+        getUserAccount().antiquateEntry(thisEntry);
+    }
 
 
     public SomeAccount getUserAccount() {
@@ -172,6 +175,8 @@ public class SomeApplication {
             //
             if (anAlarm.theChecker.hasTimePassed()) {
                 anAlarm.theNotification.Display(c,i);
+                //
+                antiquateEntry(anAlarm.theEntry);
             }
         }
         //
