@@ -1,7 +1,5 @@
 package com.teamwagdin.owner.futureproofrel;
 
-import android.app.Application;
-
 import junit.framework.TestCase;
 
 /**
@@ -9,7 +7,7 @@ import junit.framework.TestCase;
  */
 public class TestSomeApplication extends TestCase {
 
-    SomeApplication sa = SomeApplication.createInstance();
+    FutureProof sa = FutureProof.createInstance();
     User u = new User("Khori");
 
     public void testSomeApplication() {
@@ -36,7 +34,7 @@ public class TestSomeApplication extends TestCase {
 
 
     public void testIsSingleton() {
-        SomeApplication sa2 = SomeApplication.createInstance();
+        FutureProof sa2 = FutureProof.createInstance();
         //
         assertEquals(sa, sa2);
     }

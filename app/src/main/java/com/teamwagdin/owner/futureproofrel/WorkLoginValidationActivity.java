@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class WorkLoginValidationActivity extends ActionBarActivity {
 
 
-    SomeApplication theApp;
+    FutureProof theApp;
     EditText etUser;
     EditText etPass;
 
@@ -21,7 +21,7 @@ public class WorkLoginValidationActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_login_validation);
 
-        theApp = SomeApplication.createInstance();
+        theApp = FutureProof.createInstance();
         etUser = (EditText)findViewById(R.id.txtUsername);
         etPass = (EditText)findViewById(R.id.txtPassword);
 

@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -14,7 +13,7 @@ import android.view.View.OnClickListener;
 public class HomePageActivity extends ActionBarActivity
 {
 
-    SomeApplication theApp;
+    FutureProof theApp;
 
     Button button1;
     Button button2;
@@ -27,7 +26,7 @@ public class HomePageActivity extends ActionBarActivity
 
 
 
-        theApp = SomeApplication.createInstance();
+        theApp = FutureProof.createInstance();
         //
         addListenerOnButton();
     }

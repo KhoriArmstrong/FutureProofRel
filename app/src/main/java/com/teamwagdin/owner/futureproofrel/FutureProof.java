@@ -1,6 +1,5 @@
 package com.teamwagdin.owner.futureproofrel;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -11,13 +10,13 @@ import java.util.List;
 /**
  * Created by Owner on 25/02/2015.
  */
-public class SomeApplication {
+public class FutureProof {
 
-    public static SomeApplication _someApplication;
-    public static SomeApplication createInstance() {
-        if (_someApplication == null) { _someApplication = new SomeApplication(); }
+    public static FutureProof _futureProof;
+    public static FutureProof createInstance() {
+        if (_futureProof == null) { _futureProof = new FutureProof(); }
         //
-        return _someApplication;
+        return _futureProof;
     }
 
 
@@ -25,7 +24,7 @@ public class SomeApplication {
     public final int CHECKDELAY = 1000;
     Handler h;
     Runnable r;
-    private SomeApplication() {
+    private FutureProof() {
 
         initializeMe();
 
@@ -193,4 +192,7 @@ public class SomeApplication {
         }
     }
 
+
+
+    public static EntryDate constructedEntryDate = new EntryDate();
 }

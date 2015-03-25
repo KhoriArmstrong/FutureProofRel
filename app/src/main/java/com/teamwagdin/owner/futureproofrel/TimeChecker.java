@@ -1,16 +1,12 @@
 package com.teamwagdin.owner.futureproofrel;
 
-import android.os.Handler;
-
-import java.util.Date;
-
 /**
  * Created by yangjiachang on 15-01-29.
  */
 public class TimeChecker {
 
 
-    SomeApplication myApplication;
+    FutureProof myApplication;
     EntryDate targetTime;
 
     public TimeChecker(EntryDate ed) {
@@ -24,7 +20,7 @@ public class TimeChecker {
     boolean timePassed = false;
 
     public boolean checkTheTime(){
-        EntryDate currentTime = SomeApplication.getPresentDateTime();
+        EntryDate currentTime = FutureProof.getPresentDateTime();
 
         if(currentTime.equals(targetTime) || currentTime.After(targetTime)){
             timePassed = true;

@@ -1,8 +1,6 @@
 package com.teamwagdin.owner.futureproofrel;
 
 import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -13,12 +11,10 @@ import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.Calendar;
-
 
 public class NotifyActivity extends ActionBarActivity {
 
-    SomeApplication theApp;
+    FutureProof theApp;
     private TextView tvCurrentTime;
     private EditText etMessage;
 
@@ -29,7 +25,7 @@ public class NotifyActivity extends ActionBarActivity {
         setContentView(R.layout.activity_notify);
 
 
-        theApp = SomeApplication.createInstance();
+        theApp = FutureProof.createInstance();
         //
         ((Chronometer)findViewById(R.id.chronometer2)).start();
         ((Chronometer)findViewById(R.id.chronometer2)).setOnChronometerTickListener( new Chronometer.OnChronometerTickListener() {

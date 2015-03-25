@@ -30,7 +30,7 @@ public class EntryDatabase {
     }
 
     public void sendEntry(Entry thisEntry) {
-        if (thisEntry.targetDate.After(SomeApplication.getPresentDateTime())) {
+        if (thisEntry.targetDate.After(FutureProof.getPresentDateTime())) {
             allFutureEntries.add(thisEntry);
         }
         else {

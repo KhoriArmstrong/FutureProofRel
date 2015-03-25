@@ -1,7 +1,5 @@
 package com.teamwagdin.owner.futureproofrel;
 
-import java.util.Date;
-
 /**
  * Created by Owner on 29/01/2015.
  */
@@ -14,8 +12,8 @@ public class Entry {
 
     public Entry() {
         message = "";
-        createDate = SomeApplication.getPresentDateTime();
-        targetDate = SomeApplication.getPresentDateTime();
+        createDate = FutureProof.getPresentDateTime();
+        targetDate = FutureProof.getPresentDateTime();
     }
     public Entry(EntryDate thisTarget, String thisMessage) {
         this();

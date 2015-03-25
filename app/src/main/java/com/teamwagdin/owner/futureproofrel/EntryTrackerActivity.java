@@ -1,7 +1,7 @@
 package com.teamwagdin.owner.futureproofrel;
 
-import android.database.DataSetObserver;
 import android.os.SystemClock;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,18 +10,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Chronometer;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class EntryTrackerActivity extends ActionBarActivity {
 
-    SomeApplication theApp;
+    FutureProof theApp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +24,7 @@ public class EntryTrackerActivity extends ActionBarActivity {
         setContentView(R.layout.activity_entry_tracker);
 
 
-        theApp = SomeApplication.createInstance();
+        theApp = FutureProof.createInstance();
 
 
         Chronometer c = (Chronometer)findViewById(R.id.chronometer);
@@ -127,4 +122,25 @@ public class EntryTrackerActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    public void whateverTest(View view) {
+        DialogFragment newFragment;
+        newFragment = new TimePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "timePicker");
+
+        newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+
+
+        EntryDate ed = FutureProof.constructedEntryDate;
+        //
+        ((EditText)findViewById(R.id.txtMonth)).setText(""+(ed.month+1));
+        ((EditText)findViewById(R.id.txtDay)).setText(""+ed.day);
+        ((EditText)findViewById(R.id.txtYear)).setText(""+ed.year);
+        ((EditText)findViewById(R.id.txtHour)).setText(""+ed.hour);
+        ((EditText)findViewById(R.id.txtMinute)).setText(""+ed.minute);
+    }
 }
+
