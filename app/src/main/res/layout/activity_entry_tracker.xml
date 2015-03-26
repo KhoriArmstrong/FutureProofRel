@@ -23,13 +23,14 @@
         <EditText
             android:layout_width="360dp"
             android:layout_height="wrap_content"
+            android:hint="Enter a message"
             android:id="@+id/txtMessage" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Date/Time (Day/Month/Year/Hour/Minute)"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Date/Time (Hour/Minute/Day/Month/Year)"
             android:id="@+id/textView2" />
 
         <LinearLayout
@@ -37,6 +38,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:ems="10"
+                android:id="@+id/txtHour"
+                android:layout_weight="1"
+                android:enabled="true"
+                android:editable="false" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:ems="10"
+                android:id="@+id/txtMinute"
+                android:layout_weight="1"
+                android:enabled="true"
+                android:editable="false" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -64,25 +85,6 @@
                 android:inputType="none"
                 android:ems="10"
                 android:id="@+id/txtYear"
-                android:layout_weight="1"
-                android:enabled="true"
-                android:editable="false" />
-
-            <EditText
-                android:layout_width="112dp"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:ems="10"
-                android:id="@+id/txtHour"
-                android:enabled="true"
-                android:editable="false" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:ems="10"
-                android:id="@+id/txtMinute"
                 android:layout_weight="1"
                 android:enabled="true"
                 android:editable="false" />
@@ -128,7 +130,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="100dp"
         android:background="#ff000000">
 
         <ListView
@@ -150,7 +152,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="100dp"
         android:background="#ff000000">
 
         <ListView

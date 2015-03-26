@@ -28,6 +28,9 @@ public class HomePageActivity extends ActionBarActivity
 
         theApp = FutureProof.createInstance();
         //
+        theApp.createNewAccount("Bob");
+        theApp.createNewAccount("James");
+        //
         addListenerOnButton();
     }
 
@@ -62,29 +65,36 @@ public class HomePageActivity extends ActionBarActivity
         });
     }
 
+    public void LoginUserA(View view) {
+        theApp.login(theApp.retrieveAccount("Bob"));
+    }
+    public void LoginUserB(View view) {
+        theApp.login(theApp.retrieveAccount("James"));
+    }
 
-            //@Override
-            public boolean onCreateOptionsMenu(Menu menu)
-            {
-                // Inflate the menu; this adds items to the action bar if it is present.
-                getMenuInflater().inflate(R.menu.menu_home_page, menu);
-                return true;
-            }
 
-            @Override
-            public boolean onOptionsItemSelected(MenuItem item)
-            {
-                // Handle action bar item clicks here. The action bar will
-                // automatically handle clicks on the Home/Up button, so long
-                // as you specify a parent activity in AndroidManifest.xml.
-                int id = item.getItemId();
-
-                //noinspection SimplifiableIfStatement
-                if (id == R.id.action_settings)
+                //@Override
+                public boolean onCreateOptionsMenu(Menu menu)
                 {
+                    // Inflate the menu; this adds items to the action bar if it is present.
+                    getMenuInflater().inflate(R.menu.menu_home_page, menu);
                     return true;
                 }
 
-                return super.onOptionsItemSelected(item);
+                @Override
+                public boolean onOptionsItemSelected(MenuItem item)
+                {
+                    // Handle action bar item clicks here. The action bar will
+                    // automatically handle clicks on the Home/Up button, so long
+                    // as you specify a parent activity in AndroidManifest.xml.
+                    int id = item.getItemId();
+
+                    //noinspection SimplifiableIfStatement
+                    if (id == R.id.action_settings)
+                    {
+                        return true;
+                    }
+
+                    return super.onOptionsItemSelected(item);
+                }
             }
-        }

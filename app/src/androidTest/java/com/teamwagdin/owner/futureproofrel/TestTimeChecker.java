@@ -21,20 +21,12 @@ public class TestTimeChecker extends TestCase {
     }
 
     public void testCheckIfTimeHasPassed(){
-
-
-
-        TimeChecker tc = new TimeChecker(new EntryDate(EntryDate.MARCH,30,2015,9,50));
-
-
-
-
+        TimeChecker tc = new TimeChecker(new EntryDate(EntryDate.MARCH,20,2015,9,50));
+        //
         tc.checkTheTime();
 
+
         assertTrue(tc.hasTimePassed());
-
-
-
     }
 
 

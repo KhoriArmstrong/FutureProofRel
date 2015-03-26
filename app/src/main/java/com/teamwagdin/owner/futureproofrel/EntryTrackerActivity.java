@@ -33,6 +33,11 @@ public class EntryTrackerActivity extends ActionBarActivity {
 
 
         theApp = FutureProof.createInstance();
+        theApp.assignAlertResponder(new FPEventListener() {
+            public void onAntiquate() {
+                updateEntries();
+            }
+        });
 
 
         Chronometer c = (Chronometer)findViewById(R.id.chronometer);
@@ -53,7 +58,21 @@ public class EntryTrackerActivity extends ActionBarActivity {
         c.start();
 
 
+        resetFields();
+        //
         updateEntries();
+    }
+
+
+    public void resetFields() {
+        EntryDate ed = FutureProof.getPresentDateTime();
+
+        ((EditText)findViewById(R.id.txtMonth)).setText(""+(ed.month+1));
+        ((EditText)findViewById(R.id.txtDay)).setText(""+ed.day);
+        ((EditText)findViewById(R.id.txtYear)).setText(""+ed.year);
+        ((EditText)findViewById(R.id.txtHour)).setText(""+ed.hour);
+        ((EditText)findViewById(R.id.txtMinute)).setText(""+ed.minute);
+        ((EditText)findViewById(R.id.txtMessage)).setText("");
     }
 
 
@@ -88,12 +107,7 @@ public class EntryTrackerActivity extends ActionBarActivity {
         updateEntries();
 
 
-        ((EditText)findViewById(R.id.txtMonth)).setText("");
-        ((EditText)findViewById(R.id.txtDay)).setText("");
-        ((EditText)findViewById(R.id.txtYear)).setText("");
-        ((EditText)findViewById(R.id.txtHour)).setText("");
-        ((EditText)findViewById(R.id.txtMinute)).setText("");
-        ((EditText)findViewById(R.id.txtMessage)).setText("");
+        resetFields();
     }
 
     public void setToPresent(View view) {

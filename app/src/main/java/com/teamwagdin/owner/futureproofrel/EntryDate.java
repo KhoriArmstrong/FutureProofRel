@@ -88,6 +88,6 @@ public class EntryDate {
 
     @Override
     public String toString() {
-        return "("+hour+":"+minute+")["+day+"/"+(month+1)+"/"+year+"]";
+        return "("+hour+":"+String.format("%02d",minute)+")["+String.format("%02d",day)+"/"+String.format("%02d",(month+1))+"/"+year+"]";
     }
 }

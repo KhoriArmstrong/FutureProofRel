@@ -60,7 +60,6 @@ public class FutureProof {
 
         _running = true;
     }
-
     public boolean isRunning() {
         return _running;
     }
@@ -71,7 +70,9 @@ public class FutureProof {
     private SomeAccount loggedAccount = null;
     //
     public void login(SomeAccount thisAccount) {
-        login(thisAccount.getUser());
+        if (thisAccount != null) {
+            login(thisAccount.getUser());
+        }
     }
     public void login(User thisUser) {
         SomeAccount thisAccount = null;
@@ -123,14 +124,16 @@ public class FutureProof {
         //
         return sa;
     }
-    public SomeAccount createNewAccount(String thisName) throws Exception {
+    public SomeAccount createNewAccount(String thisName) {
         SomeAccount sa = retrieveAccount(thisName);
 
         if (sa == null) {
             return createNewAccount(new SomeForm(new User(thisName)));
         }
 
-        throw new Exception("Account by this name already exists.");
+
+        return null;
+        // throw new Exception("Account by this name already exists.");
     }
 
     public List<SomeAccount> getAllAccounts() {
@@ -143,6 +146,7 @@ public class FutureProof {
                 return sa;
             }
         }
+
 
         return null;
     }
@@ -186,6 +190,8 @@ public class FutureProof {
     }
 
     public void checkAllAlarms() {
+        boolean hasAntiquated = false;
+
         // Sounds any alarms that are ready to go.
         for (EntryAlarm anAlarm : allAlarms) {
             anAlarm.theChecker.checkTheTime();
@@ -194,6 +200,8 @@ public class FutureProof {
                 anAlarm.theNotification.Display(c,i);
                 //
                 antiquateEntry(anAlarm.theEntry);
+
+                hasAntiquated = true;
             }
         }
         //
@@ -208,5 +216,15 @@ public class FutureProof {
                 i--;
             }
         }
+
+
+        if (hasAntiquated) {
+            theEvent.onAntiquate();
+        }
+    }
+
+    private FPEventListener theEvent;
+    public void assignAlertResponder(FPEventListener thisListener) {
+        theEvent = thisListener;
     }
 }

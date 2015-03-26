@@ -15,7 +15,9 @@ public class TestSomeApplication extends TestCase {
     }
 
     public void setUp() {
-        sa.login(sa.createNewAccount(n));
+        if (!sa.isLoggedIn()) {
+            sa.login(sa.createNewAccount(n));
+        }
     }
 
 
@@ -41,7 +43,7 @@ public class TestSomeApplication extends TestCase {
     public void testAccountWasCreated() {
         int entryCount = sa.getAllAccounts().size();
 
-        sa.createNewAccount(n);
+        sa.createNewAccount("fdjqwfoiqhfqw");
         //
         assertTrue( sa.getAllAccounts().size() > entryCount );
     }
