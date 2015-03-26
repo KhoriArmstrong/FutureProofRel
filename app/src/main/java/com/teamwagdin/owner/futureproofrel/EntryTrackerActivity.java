@@ -1,5 +1,6 @@
 package com.teamwagdin.owner.futureproofrel;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -26,10 +27,15 @@ public class EntryTrackerActivity extends ActionBarActivity {
 
     FutureProof theApp;
 
+    private static Activity currentActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_tracker);
+
+
+        currentActivity = this;
 
 
         theApp = FutureProof.createInstance();
@@ -146,7 +152,7 @@ public class EntryTrackerActivity extends ActionBarActivity {
 
 
 
-    private class TimePickerFragment extends DialogFragment
+    public static class TimePickerFragment extends DialogFragment
             implements TimePickerDialog.OnTimeSetListener {
 
         @Override
@@ -165,12 +171,12 @@ public class EntryTrackerActivity extends ActionBarActivity {
             // Do something with the time chosen by the user
 
 
-            ((EditText)findViewById(R.id.txtHour)).setText(""+hourOfDay);
-            ((EditText)findViewById(R.id.txtMinute)).setText(""+minute);
+            ((EditText)currentActivity.findViewById(R.id.txtHour)).setText(""+hourOfDay);
+            ((EditText)currentActivity.findViewById(R.id.txtMinute)).setText(""+minute);
         }
     }
 
-    private class DatePickerFragment extends DialogFragment
+    public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {
 
         @Override
@@ -189,10 +195,9 @@ public class EntryTrackerActivity extends ActionBarActivity {
             // Do something with the date chosen by the user
 
 
-            ((EditText)findViewById(R.id.txtMonth)).setText(""+(month+1));
-            ((EditText)findViewById(R.id.txtDay)).setText(""+day);
-            ((EditText)findViewById(R.id.txtYear)).setText(""+year);
+            ((EditText)currentActivity.findViewById(R.id.txtMonth)).setText(""+(month+1));
+            ((EditText)currentActivity.findViewById(R.id.txtDay)).setText(""+day);
+            ((EditText)currentActivity.findViewById(R.id.txtYear)).setText(""+year);
         }
     }
 }
-

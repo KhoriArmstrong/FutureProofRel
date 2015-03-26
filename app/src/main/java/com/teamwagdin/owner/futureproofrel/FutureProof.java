@@ -214,7 +214,9 @@ public class FutureProof {
             anAlarm.theChecker.checkTheTime();
             //
             if (anAlarm.theChecker.hasTimePassed()) {
-                anAlarm.theNotification.Display(c,i);
+                if (getCurrentUserAccount().getAllEntries().contains(anAlarm.theEntry)) { // ??? <-- The "Current" user's alarms-- Not ALL of them...
+                    anAlarm.theNotification.Display(c, i);
+                }
                 //
                 antiquateEntry(anAlarm.theEntry);
 
