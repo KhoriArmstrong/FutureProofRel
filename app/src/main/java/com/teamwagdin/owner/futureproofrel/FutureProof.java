@@ -50,10 +50,6 @@ public class FutureProof {
         SomeAccount account = createNewAccount(new SomeForm(new User("Khori")));
         //
         login(account.getUser());
-
-
-        // sendEntry(new Entry(new EntryDate(EntryDate.FEBRUARY,26,2015,15,58), "Hello World-- From Khori"));
-        // sendEntry(new Entry(new EntryDate(EntryDate.MARCH,6,2016,18,10), "Hello World-- From Luke"));
     }
 
 
@@ -127,12 +123,28 @@ public class FutureProof {
         //
         return sa;
     }
-    public SomeAccount createNewAccount(String thisName) {
-        return createNewAccount(new SomeForm(new User(thisName)));
+    public SomeAccount createNewAccount(String thisName) throws Exception {
+        SomeAccount sa = retrieveAccount(thisName);
+
+        if (sa == null) {
+            return createNewAccount(new SomeForm(new User(thisName)));
+        }
+
+        throw new Exception("Account by this name already exists.");
     }
 
     public List<SomeAccount> getAllAccounts() {
         return allAccounts;
+    }
+
+    public SomeAccount retrieveAccount(String thisName) {
+        for (SomeAccount sa : allAccounts) {
+            if (sa.getUsername().equals(thisName)) {
+                return sa;
+            }
+        }
+
+        return null;
     }
 
 
