@@ -12,7 +12,7 @@
         android:id="@+id/textView1"
         android:layout_width="259dp"
         android:layout_height="wrap_content"
-        android:text="I&apos;m screen 1: Home Page "
+        android:text="I love cake so much!"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight="0.05" />
 
@@ -21,38 +21,15 @@
         android:id="@+id/button1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Click me I'm screen 2: Entry Tracker"
+        android:text="Entry Tracker"
         android:layout_weight="0.08" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Click me I'm screen 3: Login and Register"
+        android:text="Log Out"
         android:layout_weight="0.08" />
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Click me I'm screen 4: Entry Alarm"
-        android:layout_weight="0.08" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User A"
-        android:onClick="LoginUserA"
-        android:id="@+id/button6"
-        android:layout_weight="0.05"
-        android:layout_gravity="center_horizontal" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="User B"
-        android:onClick="LoginUserB"
-        android:id="@+id/button7"
-        android:layout_gravity="right"
-        android:layout_weight="0.05" />
 
 
 </LinearLayout>

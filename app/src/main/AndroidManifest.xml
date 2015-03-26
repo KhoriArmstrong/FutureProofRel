@@ -27,16 +27,15 @@
         <activity
             android:name=".HomePageActivity"
             android:label="@string/title_activity_home_page" >
+        </activity>
+        <activity
+            android:name=".WorkLoginValidationActivity"
+            android:label="@string/title_work_login_validation" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity
-            android:name=".WorkLoginValidationActivity"
-            android:label="@string/title_work_login_validation" >
         </activity>
     </application>
 

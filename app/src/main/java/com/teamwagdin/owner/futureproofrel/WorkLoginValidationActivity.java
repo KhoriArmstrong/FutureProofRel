@@ -19,70 +19,46 @@ public class WorkLoginValidationActivity extends Activity {
     FutureProof theApp;
 
 
-    private EditText emailEditText;
+    private EditText userEditText;
     private EditText passEditText;
-    private Button loginBt;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_login_validation);
 
-        emailEditText = (EditText) findViewById(R.id.txtEmail);
+        userEditText = (EditText) findViewById(R.id.txtUsername);
         passEditText = (EditText) findViewById(R.id.txtPassword);
-        loginBt = (Button) findViewById(R.id.button);
 
 
-
+        theApp = FutureProof.createInstance();
+        //
+        theApp.logout();
     }
 
 
-    public void loginButton(View view) {
-
-            String email = emailEditText.getText().toString();
-            String pass = passEditText.getText().toString();
-
-
-
-            if (!isValidEmail(email)) {
-                emailEditText.setError("Invalid Email");
-            }
-
-
-            else if (!isValidPassword(pass)) {
-                passEditText.setError("Invalid Password");
-            }
-
-            else {
-
-                theApp.shiftActivity(this ,HomePageActivity.class);
-            }
-
-
+    public void doRegister(View view) {
+        String user = userEditText.getText().toString();
+        String pass = passEditText.getText().toString();
+        //
+        theApp.createNewAccount(user);
     }
 
-
-    // validating email id
-    private boolean isValidEmail(String email) {
-        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
-    // validating password with retype password
-    private boolean isValidPassword(String pass) {
-        if (pass != null && pass.length() > 6) {
-            return true;
+    public void doLogin(View view) {
+        String user = userEditText.getText().toString();
+        String pass = passEditText.getText().toString();
+        //
+        SomeAccount sa = theApp.retrieveAccount(user);
+        if (sa==null) {
+            // <WHOA!!! THIS ACCOUNT DOESN'T EXIST-- ERROR.>
+            return;
         }
-        return false;
+        //
+        theApp.login(sa);
+        if (theApp.isLoggedIn()) {
+            theApp.shiftActivity(this, HomePageActivity.class);
+        }
     }
-
-
-
-
 
 
     @Override

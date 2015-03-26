@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class HomePageActivity extends ActionBarActivity
@@ -17,7 +19,6 @@ public class HomePageActivity extends ActionBarActivity
 
     Button button1;
     Button button2;
-    Button button3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +26,12 @@ public class HomePageActivity extends ActionBarActivity
         setContentView(R.layout.activity_home_page);
 
 
-
         theApp = FutureProof.createInstance();
         //
-        theApp.createNewAccount("Bob");
-        theApp.createNewAccount("James");
-        //
         addListenerOnButton();
+
+
+        ((TextView)findViewById(R.id.textView1)).setText("Welcome "+theApp.getCurrentUserAccount().getUsername());
     }
 
     public void addListenerOnButton()
@@ -41,7 +41,6 @@ public class HomePageActivity extends ActionBarActivity
 
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
 
         button1.setOnClickListener(new OnClickListener() {
             @Override
@@ -56,22 +55,7 @@ public class HomePageActivity extends ActionBarActivity
                 theApp.shiftActivity(context, WorkLoginValidationActivity.class);
             }
         });
-
-        button3.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                theApp.shiftActivity(context, NotifyActivity.class);
-            }
-        });
     }
-
-    public void LoginUserA(View view) {
-        theApp.login(theApp.retrieveAccount("Bob"));
-    }
-    public void LoginUserB(View view) {
-        theApp.login(theApp.retrieveAccount("James"));
-    }
-
 
                 //@Override
                 public boolean onCreateOptionsMenu(Menu menu)

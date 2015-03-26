@@ -8,11 +8,18 @@
         tools:context="com.teamwagdin.owner.futureproofrel.WorkLoginValidationActivity">
 
 
-    <EditText
-        android:id="@+id/txtEmail"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Welcome to FutureProof"
+            android:id="@+id/textView3" />
+
+        <EditText
+        android:id="@+id/txtUsername"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="E-mail"
+        android:hint="Username"
         android:inputType="text"
        />
 
@@ -20,21 +27,30 @@
         android:id="@+id/txtPassword"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="password"
+        android:hint="Password"
         android:inputType="text"
         android:layout_alignTop="@+id/txtUsername"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
          />
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/button"
-        android:onClick="loginButton"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:id="@+id/btnRegister"
+            android:onClick="doRegister"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/btnLogin"
+            android:onClick="doLogin"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
 
 
 

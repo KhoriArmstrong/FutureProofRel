@@ -47,9 +47,9 @@ public class FutureProof {
 
     public void initializeMe() {
         // ??? <-- Temporary for until the login screen works.
-        SomeAccount account = createNewAccount(new SomeForm(new User("Khori")));
+        // SomeAccount account = createNewAccount(new SomeForm(new User("Khori")));
         //
-        login(account.getUser());
+        // login(account.getUser());
     }
 
 
@@ -89,6 +89,18 @@ public class FutureProof {
         //
         loggedUser = thisUser;
         loggedAccount = thisAccount;
+    }
+
+    public boolean logout() {
+        if (isLoggedIn()) {
+            loggedUser = null;
+            loggedAccount = null;
+            //
+            return true;
+        }
+
+
+        return false;
     }
 
     public boolean isLoggedIn() {
@@ -174,8 +186,10 @@ public class FutureProof {
     Context c;
     Intent i;
     public void shiftActivity(Context thisContext, Class<?> thisClass) {
-        // not logged in
-        // instead of going there, go to login screen
+        if (!isLoggedIn()) {
+            thisClass = WorkLoginValidationActivity.class;
+        }
+
 
         c = thisContext;
         //
