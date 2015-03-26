@@ -49,7 +49,7 @@ public class FutureProof {
         // ??? <-- Temporary for until the login screen works.
         SomeAccount account = createNewAccount(new SomeForm(new User("Khori")));
         //
-        login(account.myForm.myUser);
+        login(account.getUser());
 
 
         // sendEntry(new Entry(new EntryDate(EntryDate.FEBRUARY,26,2015,15,58), "Hello World-- From Khori"));
@@ -74,10 +74,13 @@ public class FutureProof {
     private User loggedUser = null;
     private SomeAccount loggedAccount = null;
     //
+    public void login(SomeAccount thisAccount) {
+        login(thisAccount.getUser());
+    }
     public void login(User thisUser) {
         SomeAccount thisAccount = null;
         for (SomeAccount anAccount : allAccounts) {
-            if (anAccount.myForm.myUser == thisUser) {
+            if (anAccount.getUser().equals(thisUser)) {
                 thisAccount = anAccount;
                 break;
             }
@@ -103,11 +106,11 @@ public class FutureProof {
         createEntryAlarm(thisEntry);
     }
     public void antiquateEntry(Entry thisEntry) {
-        getUserAccount().antiquateEntry(thisEntry);
+        getCurrentUserAccount().antiquateEntry(thisEntry);
     }
 
 
-    public SomeAccount getUserAccount() {
+    public SomeAccount getCurrentUserAccount() {
         return loggedAccount;
     }
     public List<Entry> getAllEntries() {
@@ -117,12 +120,15 @@ public class FutureProof {
 
 
     private ArrayList<SomeAccount> allAccounts = new ArrayList<SomeAccount>();
-    public SomeAccount createNewAccount(SomeForm thisForm) {
+    private SomeAccount createNewAccount(SomeForm thisForm) {
         SomeAccount sa = new SomeAccount(thisForm);
         //
         allAccounts.add(sa);
         //
         return sa;
+    }
+    public SomeAccount createNewAccount(String thisName) {
+        return createNewAccount(new SomeForm(new User(thisName)));
     }
 
     public List<SomeAccount> getAllAccounts() {

@@ -7,11 +7,11 @@ import java.util.List;
  */
 public class SomeAccount {
     public EntryDatabase entryDatabase = new EntryDatabase();
-    public SomeForm myForm;
+    private SomeForm myForm;
 
     public SomeAccount(SomeForm thisForm) {
         myForm = thisForm;
-    } // ??? <-- Should not be instantiable by anything other than the "SomeApplication" class
+    } // ??? <-- Should not be instantiable by anything other than the "FutureProof" class
 
 
     public List<Entry> getPastEntries() {
@@ -26,8 +26,29 @@ public class SomeAccount {
     public boolean containsEntry(Entry thisEntry) {
         return entryDatabase.getAllEntries().contains(thisEntry);
     }
-
     public void antiquateEntry(Entry thisEntry) {
         entryDatabase.antiquateEntry(thisEntry);
+    }
+
+
+    public String getUsername() {
+        return myForm.myUser.myName;
+    }
+    public User getUser() {
+        return myForm.myUser;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof SomeAccount) {
+            SomeAccount sa = (SomeAccount)o;
+
+            if (getUser().equals(sa.getUser())) {
+                return true;
+            }
+        }
+
+
+        return false;
     }
 }

@@ -32,14 +32,14 @@ public class WorkLoginValidationActivity extends ActionBarActivity {
 
     SomeAccount sa;
     public void registerButton(View v) {
-        sa = theApp.createNewAccount(new SomeForm(new User(etUser.getText().toString())));
+        sa = theApp.createNewAccount(etUser.getText().toString());
 
 
-        Toast.makeText(this, "New account: "+sa.myForm.myUser.myName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "New account: "+sa.getUsername(), Toast.LENGTH_SHORT).show();
     }
     public void loginButton(View v) {
         try {
-            theApp.login(sa.myForm.myUser);
+            theApp.login(sa);
         }
         catch (Exception e) {}
 

@@ -3,7 +3,6 @@ package com.teamwagdin.owner.futureproofrel;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.os.SystemClock;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
@@ -64,10 +63,10 @@ public class EntryTrackerActivity extends ActionBarActivity {
         //
         lvPast.setAdapter(new ArrayAdapter<Entry>(this,
             android.R.layout.simple_list_item_1,
-                theApp.getUserAccount().getPastEntries()));
+                theApp.getCurrentUserAccount().getPastEntries()));
         lvFuture.setAdapter(new ArrayAdapter<Entry>(this,
             android.R.layout.simple_list_item_1,
-            theApp.getUserAccount().getFutureEntries()));
+            theApp.getCurrentUserAccount().getFutureEntries()));
     }
 
 

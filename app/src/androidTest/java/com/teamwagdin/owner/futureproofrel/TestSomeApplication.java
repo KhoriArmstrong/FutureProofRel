@@ -8,16 +8,14 @@ import junit.framework.TestCase;
 public class TestSomeApplication extends TestCase {
 
     FutureProof sa = FutureProof.createInstance();
-    User u = new User("Khori");
+    String n = "Khori";
 
     public void testSomeApplication() {
         assertNotNull(sa);
     }
 
     public void setUp() {
-        sa.createNewAccount(new SomeForm(u));
-        //
-        sa.login(u);
+        sa.login(sa.createNewAccount(n));
     }
 
 
@@ -43,13 +41,13 @@ public class TestSomeApplication extends TestCase {
     public void testAccountWasCreated() {
         int entryCount = sa.getAllAccounts().size();
 
-        sa.createNewAccount(new SomeForm(u));
+        sa.createNewAccount(n);
         //
         assertTrue( sa.getAllAccounts().size() > entryCount );
     }
 
     public void testAccountWasRetrieved() {
-        SomeAccount account = sa.getUserAccount();
+        SomeAccount account = sa.getCurrentUserAccount();
         //
         assertNotNull( account );
     }
@@ -69,21 +67,18 @@ public class TestSomeApplication extends TestCase {
     public void testEntryReceivedByCorrectAccount() {
         Entry e = new Entry();
 
-        User firstUser = new User("Hamid");
-        User otherUser = new User("Nabeela");
-        //
-        sa.createNewAccount(new SomeForm(firstUser));
-        sa.createNewAccount(new SomeForm(otherUser));
+        SomeAccount firstUser = sa.createNewAccount("Hamid");
+        SomeAccount otherUser = sa.createNewAccount("Nabeela");
 
 
         sa.login(firstUser);
-        SomeAccount firstAccount = sa.getUserAccount();
+        SomeAccount firstAccount = sa.getCurrentUserAccount();
         //
         sa.sendEntry(e);
 
 
         sa.login(otherUser);
-        SomeAccount otherAccount = sa.getUserAccount();
+        SomeAccount otherAccount = sa.getCurrentUserAccount();
 
 
 

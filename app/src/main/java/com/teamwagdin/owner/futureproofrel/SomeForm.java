@@ -21,5 +21,5 @@ public class SomeForm {
     public boolean isFilledOut() {
         return _filledOut;
     }
-
+    // A form that is "filled out" becomes locked, such that you can't change any of its values without throwing an exception.
 }
