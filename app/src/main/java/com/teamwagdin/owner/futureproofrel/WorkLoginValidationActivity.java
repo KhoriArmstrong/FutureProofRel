@@ -1,65 +1,88 @@
 package com.teamwagdin.owner.futureproofrel;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
-public class WorkLoginValidationActivity extends ActionBarActivity {
-
+public class WorkLoginValidationActivity extends Activity {
 
     FutureProof theApp;
-    EditText etUser;
-    EditText etPass;
+
+
+    private EditText emailEditText;
+    private EditText passEditText;
+    private Button loginBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_login_validation);
 
-        theApp = FutureProof.createInstance();
-        etUser = (EditText)findViewById(R.id.txtUsername);
-        etPass = (EditText)findViewById(R.id.txtPassword);
-
+        emailEditText = (EditText) findViewById(R.id.txtEmail);
+        passEditText = (EditText) findViewById(R.id.txtPassword);
+        loginBt = (Button) findViewById(R.id.button);
 
 
 
     }
 
-    SomeAccount sa;
-    public void registerButton(View v) {
-        sa = theApp.createNewAccount(etUser.getText().toString());
+
+    public void loginButton(View view) {
+
+            String email = emailEditText.getText().toString();
+            String pass = passEditText.getText().toString();
 
 
-        Toast.makeText(this, "New account: "+sa.getUsername(), Toast.LENGTH_SHORT).show();
+
+            if (!isValidEmail(email)) {
+                emailEditText.setError("Invalid Email");
+            }
+
+
+            else if (!isValidPassword(pass)) {
+                passEditText.setError("Invalid Password");
+            }
+
+            else {
+
+                theApp.shiftActivity(this ,HomePageActivity.class);
+            }
+
+
     }
-    public void loginButton(View v) {
-        try {
-            theApp.login(sa);
+
+
+    // validating email id
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    // validating password with retype password
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() > 6) {
+            return true;
         }
-        catch (Exception e) {}
-
-
-        if (theApp.isLoggedIn()) {
-            Toast.makeText(this, "User is logged in", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "User DIDN'T LOG IN!!", Toast.LENGTH_SHORT).show();
-        }
+        return false;
     }
-    public void runButton(View v) {
 
-        theApp.Run();
 
-        if (theApp.isRunning()) {
-            Toast.makeText(this, "App is running", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "App ISN'T running RIGHT NOW", Toast.LENGTH_SHORT).show();
-        }
-    }
+
+
 
 
     @Override

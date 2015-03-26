@@ -174,6 +174,9 @@ public class FutureProof {
     Context c;
     Intent i;
     public void shiftActivity(Context thisContext, Class<?> thisClass) {
+        // not logged in
+        // instead of going there, go to login screen
+
         c = thisContext;
         //
         i = new Intent(c, thisClass);
