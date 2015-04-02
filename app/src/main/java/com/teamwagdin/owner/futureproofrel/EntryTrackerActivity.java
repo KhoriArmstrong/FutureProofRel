@@ -28,15 +28,12 @@ public class EntryTrackerActivity extends ActionBarActivity {
 
     FutureProof theApp;
 
-    private static Activity currentActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry_tracker);
-
-
-        currentActivity = this;
 
 
         theApp = FutureProof.createInstance();
@@ -65,23 +62,16 @@ public class EntryTrackerActivity extends ActionBarActivity {
         c.start();
 
 
-        resetFields();
-        //
         updateEntries();
     }
 
 
-    public void resetFields() {
-        EntryDate ed = FutureProof.getPresentDateTime();
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-        ((EditText)findViewById(R.id.txtMonth)).setText(""+(ed.month+1));
-        ((EditText)findViewById(R.id.txtDay)).setText(""+ed.day);
-        ((EditText)findViewById(R.id.txtYear)).setText(""+ed.year);
-        ((EditText)findViewById(R.id.txtHour)).setText(""+ed.hour);
-        ((EditText)findViewById(R.id.txtMinute)).setText(""+ed.minute);
-        ((EditText)findViewById(R.id.txtMessage)).setText("");
+        updateEntries();
     }
-
 
     public void updateEntries() {
         ListView lvPast = (ListView)this.findViewById(R.id.listView1);
@@ -96,37 +86,19 @@ public class EntryTrackerActivity extends ActionBarActivity {
     }
 
 
-
-    public void performSend(View view) {
-        int month = Integer.parseInt(((EditText)findViewById(R.id.txtMonth)).getText().toString());
-        int day = Integer.parseInt(((EditText)findViewById(R.id.txtDay)).getText().toString());
-        int year = Integer.parseInt(((EditText)findViewById(R.id.txtYear)).getText().toString());
-        int hour = Integer.parseInt(((EditText)findViewById(R.id.txtHour)).getText().toString());
-        int minute = Integer.parseInt(((EditText)findViewById(R.id.txtMinute)).getText().toString());
-        //
-        EntryDate newTime = new EntryDate(month-1,day,year,hour,minute);
-        //
-        Entry e = new Entry(newTime,((EditText)findViewById(R.id.txtMessage)).getText().toString());
-
-
-        theApp.sendEntry(e);
-        //
-        updateEntries();
-
-
-        resetFields();
+    public void gotoNewEntry(View view) {
+        theApp.shiftActivity(this, CreateEntryActivity.class);
     }
 
-    public void setToPresent(View view) {
-        DialogFragment newFragment;
-        newFragment = new TimePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "timePicker");
-
-        newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
+    //see all past entries
+    public void seePast(View view) {
+        // theApp.shiftActivity(this, SeePastEntriesActivity.class);
     }
-    // !!! <-- A visual of a clock and numbers which represent the date... When a date field is changed, the clock visually "tunes" itself to that time, as well as the month/year/day numbers flipping through to their correct time
 
+    //see all future entries
+    public void seeFuture(View view) {
+        // theApp.shiftActivity(this, SeeFutureEntriesActivity.class);
+    }
 
 
     @Override
@@ -149,68 +121,5 @@ public class EntryTrackerActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-
-    public static class TimePickerFragment extends DialogFragment
-            implements TimePickerDialog.OnTimeSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current time as the default values for the picker
-            final Calendar c = Calendar.getInstance();
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
-
-            // Create a new instance of TimePickerDialog and return it
-            return new TimePickerDialog(getActivity(), this, hour, minute,
-                    DateFormat.is24HourFormat(getActivity()));
-        }
-
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            // Do something with the time chosen by the user
-
-
-            ((EditText)currentActivity.findViewById(R.id.txtHour)).setText(""+hourOfDay);
-            ((EditText)currentActivity.findViewById(R.id.txtMinute)).setText(""+minute);
-        }
-    }
-
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            // Do something with the date chosen by the user
-
-
-            ((EditText)currentActivity.findViewById(R.id.txtMonth)).setText(""+(month+1));
-            ((EditText)currentActivity.findViewById(R.id.txtDay)).setText(""+day);
-            ((EditText)currentActivity.findViewById(R.id.txtYear)).setText(""+year);
-        }
-    }
-
-    //see all past entries
-    public void seePast(View view) {
-        Intent i = new Intent(this, SeePastEntriesActivity.class);
-        startActivity(i);
-    }
-
-    //see all future entries
-    public void seeFuture(View view) {
-        Intent i = new Intent(this, SeeFutureEntriesActivity.class);
-        startActivity(i);
     }
 }
