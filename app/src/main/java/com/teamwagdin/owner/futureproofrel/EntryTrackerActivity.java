@@ -13,6 +13,7 @@ import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Chronometer;
 import android.widget.DatePicker;
@@ -27,7 +28,7 @@ import java.util.Calendar;
 public class EntryTrackerActivity extends ActionBarActivity {
 
     FutureProof theApp;
-
+    private static Activity currentActivity;
 
 
     @Override
@@ -36,6 +37,7 @@ public class EntryTrackerActivity extends ActionBarActivity {
         setContentView(R.layout.activity_entry_tracker);
 
 
+        currentActivity = this;
         theApp = FutureProof.createInstance();
         theApp.assignAlertResponder(new FPEventListener() {
             public void onAntiquate() {
@@ -76,13 +78,43 @@ public class EntryTrackerActivity extends ActionBarActivity {
     public void updateEntries() {
         ListView lvPast = (ListView)this.findViewById(R.id.listView1);
         ListView lvFuture = (ListView)this.findViewById(R.id.listView2);
-        //
+
+        // ---------------------------------------------------------------------
+
         lvPast.setAdapter(new ArrayAdapter<Entry>(this,
             android.R.layout.simple_list_item_1,
                 theApp.getCurrentUserAccount().getPastEntries()));
+
         lvFuture.setAdapter(new ArrayAdapter<Entry>(this,
             android.R.layout.simple_list_item_1,
             theApp.getCurrentUserAccount().getFutureEntries()));
+
+        // ---------------------------------------------------------------------
+
+
+
+
+        lvPast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Entry e = theApp.getCurrentUserAccount().getPastEntries().get(position);
+                //
+                theApp.applicationBundle.putInt("editEntry",e.id);
+                //
+                theApp.shiftActivity(currentActivity, EntryEditActivity.class);
+            }
+        });
+
+        lvFuture.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Entry e = theApp.getCurrentUserAccount().getFutureEntries().get(position);
+                //
+                theApp.applicationBundle.putInt("editEntry",e.id);
+                //
+                theApp.shiftActivity(currentActivity, EntryEditActivity.class);
+            }
+        });
     }
 
 

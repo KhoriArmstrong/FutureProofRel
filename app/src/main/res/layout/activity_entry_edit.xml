@@ -195,6 +195,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.50"
             android:text="Accept"
+            android:onClick="doAccept"
             android:id="@+id/button3" />
 
         <Button
@@ -202,6 +203,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.50"
             android:text="Decline"
+            android:onClick="doDecline"
             android:id="@+id/button6" />
     </LinearLayout>
 

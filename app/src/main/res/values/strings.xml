@@ -12,5 +12,6 @@
     <string name="title_activity_notify">Notify Activity</string>
     <string name="title_work_login_validation">Login Activity</string>
     <string name="title_activity_create_entry">Create Entry</string>
+    <string name="title_activity_entry_edit">Entry Edit</string>
 
 </resources>

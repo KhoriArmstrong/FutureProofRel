@@ -31,6 +31,15 @@ public class EntryDate {
         hour = d.getHours();
         minute = d.getMinutes();
     }
+
+    /**
+     *
+     * @param thisMonth
+     * @param thisDay
+     * @param thisYear
+     * @param thisHour
+     * @param thisMinute
+     */
     public EntryDate(int thisMonth, int thisDay, int thisYear, int thisHour, int thisMinute) {
         month = thisMonth;
         day = thisDay;

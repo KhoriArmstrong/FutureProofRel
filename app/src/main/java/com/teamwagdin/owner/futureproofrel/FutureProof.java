@@ -2,6 +2,7 @@ package com.teamwagdin.owner.futureproofrel;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class FutureProof {
     Runnable r;
     private FutureProof() {
 
+        applicationBundle = new Bundle();
+        //
+        //
         initializeMe();
 
 
@@ -183,6 +187,10 @@ public class FutureProof {
     }
 
 
+
+
+    public Bundle applicationBundle;
+    //
     Context c;
     Intent i;
     public void shiftActivity(Context thisContext, Class<?> thisClass) {
@@ -194,6 +202,8 @@ public class FutureProof {
         c = thisContext;
         //
         i = new Intent(c, thisClass);
+        //
+        i.putExtras(applicationBundle);
         //
         thisContext.startActivity(i);
     }

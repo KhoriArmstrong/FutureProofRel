@@ -22,7 +22,6 @@ public class CreateEntryActivity extends ActionBarActivity {
 
 
     FutureProof theApp;
-
     private static Activity currentActivity;
 
     @Override

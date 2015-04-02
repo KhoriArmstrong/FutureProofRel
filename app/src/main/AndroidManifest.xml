@@ -40,6 +40,10 @@
             android:name=".CreateEntryActivity"
             android:label="@string/title_activity_create_entry" >
         </activity>
+        <activity
+            android:name=".EntryEditActivity"
+            android:label="@string/title_activity_entry_edit" >
+        </activity>
     </application>
 
 </manifest>
