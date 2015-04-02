@@ -1,17 +1,13 @@
 package com.teamwagdin.owner.futureproofrel;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 
 public class WorkLoginValidationActivity extends Activity {

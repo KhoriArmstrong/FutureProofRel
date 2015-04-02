@@ -11,6 +11,5 @@
     <string name="title_activity_entry_tracker">Entry Tracker</string>
     <string name="title_activity_notify">Notify Activity</string>
     <string name="title_work_login_validation">Login Activity</string>
-    <string name="title_activity_entry_edit">Entry Editing</string>
 
 </resources>

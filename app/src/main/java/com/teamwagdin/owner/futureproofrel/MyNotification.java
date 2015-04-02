@@ -5,6 +5,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
+
+import java.text.ParseException;
 
 /**
  * Created by yangjiachang on 15-01-29.
@@ -45,6 +49,18 @@ public class MyNotification {
         Notification notification = new Notification(icon, tickerText, when);
         notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
 
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        if(alarmSound == null){
+            alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+            if(alarmSound == null){
+                alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            }
+        }
+        notification.sound = alarmSound;
+
+
+
+        notification.defaults = Notification.DEFAULT_LIGHTS;
 // and this
         final int HELLO_ID = 1;
         mNotificationManager.notify(HELLO_ID, notification);

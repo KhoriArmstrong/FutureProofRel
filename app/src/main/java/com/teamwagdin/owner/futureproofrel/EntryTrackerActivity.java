@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
@@ -199,5 +200,17 @@ public class EntryTrackerActivity extends ActionBarActivity {
             ((EditText)currentActivity.findViewById(R.id.txtDay)).setText(""+day);
             ((EditText)currentActivity.findViewById(R.id.txtYear)).setText(""+year);
         }
+    }
+
+    //see all past entries
+    public void seePast(View view) {
+        Intent i = new Intent(this, SeePastEntriesActivity.class);
+        startActivity(i);
+    }
+
+    //see all future entries
+    public void seeFuture(View view) {
+        Intent i = new Intent(this, SeeFutureEntriesActivity.class);
+        startActivity(i);
     }
 }

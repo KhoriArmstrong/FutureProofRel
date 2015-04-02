@@ -140,7 +140,15 @@
             android:id="@+id/listView1"
             android:background="#ff31ff2f"
             android:layout_weight="1" />
+
     </LinearLayout>
+
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="See All"
+    android:onClick="seePast"
+    android:id="@+id/button5" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -163,6 +171,13 @@
             android:background="#ff66bdff"
             android:layout_weight="1" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="See All"
+        android:onClick="seeFuture"
+        android:id="@+id/button6" />
 
     <Chronometer
         android:layout_width="wrap_content"
