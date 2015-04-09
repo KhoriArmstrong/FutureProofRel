@@ -3,6 +3,7 @@ package com.teamwagdin.owner.futureproofrel;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ListActivity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.SystemClock;
@@ -10,6 +11,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -28,8 +31,8 @@ import java.util.Calendar;
 public class EntryTrackerActivity extends ActionBarActivity {
 
     FutureProof theApp;
-    private static Activity currentActivity;
-
+    Chronometer c;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,7 @@ public class EntryTrackerActivity extends ActionBarActivity {
         setContentView(R.layout.activity_entry_tracker);
 
 
-        currentActivity = this;
+
         theApp = FutureProof.createInstance();
         theApp.assignAlertResponder(new FPEventListener() {
             public void onAntiquate() {
@@ -46,14 +49,14 @@ public class EntryTrackerActivity extends ActionBarActivity {
         });
 
 
-        Chronometer c = (Chronometer)findViewById(R.id.chronometer);
+        c = (Chronometer)findViewById(R.id.chronometer);
         c.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             long lastTime;
 
             @Override
             public void onChronometerTick(Chronometer chronometer) {
                 if (SystemClock.elapsedRealtime()-lastTime > 1000) {
-                    TextView tv = (TextView)findViewById(R.id.textView);
+                    tv = (TextView)findViewById(R.id.textView);
                     tv.setText(theApp.getPresentDateTime().toString());
 
                     lastTime = SystemClock.elapsedRealtime();
@@ -75,11 +78,15 @@ public class EntryTrackerActivity extends ActionBarActivity {
         updateEntries();
     }
 
+    ListView lvPast,lvFuture;
     public void updateEntries() {
-        ListView lvPast = (ListView)this.findViewById(R.id.listView1);
-        ListView lvFuture = (ListView)this.findViewById(R.id.listView2);
+        lvPast = (ListView)this.findViewById(R.id.lstPast);
+        lvFuture = (ListView)this.findViewById(R.id.lstFuture);
 
         // ---------------------------------------------------------------------
+
+        registerForContextMenu(lvPast);
+        registerForContextMenu(lvFuture);
 
         lvPast.setAdapter(new ArrayAdapter<Entry>(this,
             android.R.layout.simple_list_item_1,
@@ -91,32 +98,72 @@ public class EntryTrackerActivity extends ActionBarActivity {
 
         // ---------------------------------------------------------------------
 
-
-
-
         lvPast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Entry e = theApp.getCurrentUserAccount().getPastEntries().get(position);
-                //
-                theApp.applicationBundle.putInt("editEntry",e.id);
-                //
-                theApp.shiftActivity(currentActivity, EntryEditActivity.class);
+                editEntry( theApp.getCurrentUserAccount().getPastEntries().get(position) );
             }
         });
 
         lvFuture.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Entry e = theApp.getCurrentUserAccount().getFutureEntries().get(position);
-                //
-                theApp.applicationBundle.putInt("editEntry",e.id);
-                //
-                theApp.shiftActivity(currentActivity, EntryEditActivity.class);
+                editEntry( theApp.getCurrentUserAccount().getFutureEntries().get(position) );
             }
         });
     }
 
+    public void editEntry(Entry e) {
+        theApp.applicationBundle.putInt("editEntry",e.id);
+        //
+        theApp.shiftActivity(this, EntryEditActivity.class);
+    }
+    public void deleteEntry(Entry e) {
+        // TODO: DELETE THE ENTRY
+    }
+
+
+
+
+    final int CONTEXT_EDIT = 100;
+    final int CONTEXT_DELETE = 200;
+
+    boolean checkFuture; // ??? <-- ... This is just so bad...
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("For this entry...");
+        if (v.getId() == R.id.lstPast) {
+            checkFuture = false;
+        } else if (v.getId() == R.id.lstFuture) {
+            checkFuture = true;
+        }
+        //
+        menu.add(0, CONTEXT_EDIT, 0, "Edit");
+        menu.add(1, CONTEXT_DELETE, 1, "Delete");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        // Toast.makeText(this,""+item.getItemId(),Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this,""+info.position,Toast.LENGTH_SHORT).show();
+
+        Entry e;
+        if (checkFuture) {
+            e = theApp.getCurrentUserAccount().getFutureEntries().get(info.position);
+        } else {
+            e = theApp.getCurrentUserAccount().getPastEntries().get(info.position);
+        }
+        //
+        if (item.getItemId() == CONTEXT_EDIT) {
+            editEntry( e );
+        }
+        else if (item.getItemId() == CONTEXT_DELETE) {
+            deleteEntry( e );
+        }
+        //
+        return false;
+    }
 
     public void gotoNewEntry(View view) {
         theApp.shiftActivity(this, CreateEntryActivity.class);
