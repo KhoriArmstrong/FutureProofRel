@@ -29,6 +29,14 @@ public class WorkLoginValidationActivity extends Activity {
 
         theApp = FutureProof.createInstance();
         //
+
+
+        theApp.c = this;
+        //
+        theApp.getModelHandle().initializeMe(theApp.c);
+        // ??? <-- A quick fix. The application should actually START on a "welcome" screen, then perform "shiftActivity" into THIS screen, making this unnecessary.
+
+        //
         theApp.logout();
     }
 

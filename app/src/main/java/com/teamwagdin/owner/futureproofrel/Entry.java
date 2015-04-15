@@ -33,6 +33,11 @@ public class Entry {
         message = thisMessage;
         targetDate = thisTarget;
     }
+    public Entry(EntryDate thisCreate, EntryDate thisTarget, String thisMessage) {
+        this(thisTarget,thisMessage);
+        //
+        createDate = thisCreate;
+    }
 
 
 

@@ -18,17 +18,19 @@
 
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnToTracker"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Entry Tracker"
+        android:onClick="doTracker"
         android:layout_weight="0.08" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnLogOut"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Log Out"
+        android:onClick="doLogOut"
         android:layout_weight="0.08" />
 
 

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.parse.ParseException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,11 @@ public class FutureProof {
     }
 
 
+    private FPModel model;
+    public FPModel getModelHandle() {
+        return model;
+    }
+
 
     public final int CHECKDELAY = 1000;
     Handler h;
@@ -28,6 +35,7 @@ public class FutureProof {
     private FutureProof() {
 
         applicationBundle = new Bundle();
+        model = FPModel.createInstance();
         //
         //
         initializeMe();
@@ -93,6 +101,8 @@ public class FutureProof {
         //
         loggedUser = thisUser;
         loggedAccount = thisAccount;
+        //
+        this.uponUserLoggedIn();
     }
 
     public boolean logout() {
@@ -112,8 +122,27 @@ public class FutureProof {
     }
 
 
-
+    /**
+     * The public function for which entries are passed. Automatically adds to database.
+     * @param thisEntry
+     * @throws ParseException
+     */
     public void sendEntry(Entry thisEntry) {
+        try {
+            model.dataEntryAdd(loggedUser, thisEntry);
+        }
+        catch (ParseException e) {
+
+        }
+        //
+        submitEntryToListing(thisEntry);
+    }
+
+    /**
+     * Adds the entry to the listing WITHOUT adding to the database. Used for synchronization.
+     * @param thisEntry
+     */
+    private void submitEntryToListing(Entry thisEntry) {
         loggedAccount.entryDatabase.sendEntry(thisEntry);
         //
         createEntryAlarm(thisEntry);
@@ -206,6 +235,9 @@ public class FutureProof {
         i.putExtras(applicationBundle);
         //
         thisContext.startActivity(i);
+
+
+        model.initializeMe(c);
     }
 
 
@@ -255,5 +287,17 @@ public class FutureProof {
     private FPEventListener theEvent;
     public void assignAlertResponder(FPEventListener thisListener) {
         theEvent = thisListener;
+    }
+
+    public void uponUserLoggedIn() {
+        // TODO: Query Parse and add all relevant entries to lists...
+        try {
+            for (Entry anEntry : model.dataEntryGetAll(loggedUser)) {
+                this.submitEntryToListing(anEntry);
+            }
+        }
+        catch (ParseException e) {
+
+        }
     }
 }

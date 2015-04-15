@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -16,6 +15,7 @@ public class HomePageActivity extends ActionBarActivity
 {
 
     FutureProof theApp;
+    FPModel theModel;
 
     Button button1;
     Button button2;
@@ -27,35 +27,20 @@ public class HomePageActivity extends ActionBarActivity
 
 
         theApp = FutureProof.createInstance();
-        //
-        addListenerOnButton();
+        theModel = theApp.getModelHandle();
 
 
         ((TextView)findViewById(R.id.textView1)).setText("Welcome "+theApp.getCurrentUserAccount().getUsername());
     }
 
-    public void addListenerOnButton()
-    {
-
-        final Context context = this;
-
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-
-        button1.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                theApp.shiftActivity(context, EntryTrackerActivity.class);
-            }
-        });
-
-        button2.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                theApp.shiftActivity(context, WorkLoginValidationActivity.class);
-            }
-        });
+    public void doTracker(View view) {
+        theApp.shiftActivity(this, EntryTrackerActivity.class);
     }
+
+    public void doLogOut(View view) {
+        theApp.shiftActivity(this, WorkLoginValidationActivity.class);
+    }
+
 
                 //@Override
                 public boolean onCreateOptionsMenu(Menu menu)

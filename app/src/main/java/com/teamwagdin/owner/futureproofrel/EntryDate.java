@@ -97,6 +97,56 @@ public class EntryDate {
 
     @Override
     public String toString() {
+        return toParsableString();
+    }
+
+    public String toParsableString() {
         return "("+hour+":"+String.format("%02d",minute)+")["+String.format("%02d",day)+"/"+String.format("%02d",(month+1))+"/"+year+"]";
+    }
+
+    public static EntryDate parse(String thisString) {
+        String theHour,theMinute,theMonth,theDay,theYear;
+
+        // (<hour>:   :<minute>)    [<day>/   /<month>/    /<year>]
+        // (12:58)[20/04/2010]
+
+        thisString = thisString.substring(thisString.indexOf("(")+1,thisString.length());
+        //
+        theHour = thisString;
+        theHour = theHour.substring(0,theHour.indexOf(":"));
+
+
+        thisString = thisString.substring(thisString.indexOf(":")+1,thisString.length());
+        //
+        theMinute = thisString;
+        theMinute = theMinute.substring(0,theMinute.indexOf(")"));
+
+
+        thisString = thisString.substring(thisString.indexOf("[")+1,thisString.length());
+        //
+        theDay = thisString;
+        theDay = theDay.substring(0,theDay.indexOf("/"));
+
+
+        thisString = thisString.substring(thisString.indexOf("/")+1,thisString.length());
+        //
+        theMonth = thisString;
+        theMonth = theMonth.substring(0,theMonth.indexOf("/"));
+
+
+        thisString = thisString.substring(thisString.indexOf("/")+1,thisString.length());
+        //
+        theYear = thisString;
+        theYear = theYear.substring(0,theYear.indexOf("]"));
+
+
+
+        EntryDate thisDate = new EntryDate(Integer.parseInt(theMonth)-1,
+                Integer.parseInt(theDay),
+                Integer.parseInt(theYear),
+                Integer.parseInt(theHour),
+                Integer.parseInt(theMinute));
+        //
+        return thisDate;
     }
 }
