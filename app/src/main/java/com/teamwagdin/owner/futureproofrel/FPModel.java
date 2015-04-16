@@ -55,7 +55,7 @@ public class FPModel {
         //
         testObject.put("userID", thisUser.myName);
         testObject.put("createDate", thisEntry.createDate.toParsableString());
-        testObject.put("targetDate", thisEntry.createDate.toParsableString());
+        testObject.put("targetDate", thisEntry.targetDate.toParsableString());
         testObject.put("message", thisEntry.message.toString());
         //
         testObject.save();
