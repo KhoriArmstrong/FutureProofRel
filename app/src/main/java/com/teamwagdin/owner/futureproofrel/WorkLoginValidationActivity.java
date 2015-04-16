@@ -45,9 +45,12 @@ public class WorkLoginValidationActivity extends Activity {
         String user = userEditText.getText().toString();
         String pass = passEditText.getText().toString();
         //
-        if (theApp.createNewAccount(user) == null) {
+        if (theApp.retrieveAccount(user) != null) {
             userEditText.setError("User account already exists.");
+            return;
         }
+        //
+        theApp.createNewAccount(user);
     }
 
     public void doLogin(View view) {
@@ -55,10 +58,8 @@ public class WorkLoginValidationActivity extends Activity {
         String pass = passEditText.getText().toString();
         //
         SomeAccount sa = theApp.retrieveAccount(user);
-        if (sa==null) {
-            if (theApp.createNewAccount(user) == null) {
-                userEditText.setError("User account not found.");
-            }
+        if (sa == null) {
+            userEditText.setError("User account not found.");
             return;
         }
         //

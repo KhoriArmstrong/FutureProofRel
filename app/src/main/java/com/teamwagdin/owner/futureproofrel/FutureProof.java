@@ -202,20 +202,6 @@ public class FutureProof {
     }
 
 
-    List<EntryAlarm> allAlarms = new ArrayList<EntryAlarm>();
-    public EntryAlarm createEntryAlarm(Entry thisEntry) {
-        EntryAlarm ea = new EntryAlarm(thisEntry);
-        //
-        ea.theChecker.checkTheTime();
-        //
-        if (!ea.theChecker.hasTimePassed()) {
-            allAlarms.add(ea);
-        }
-        //
-        return ea;
-    }
-
-
 
 
     public Bundle applicationBundle;
@@ -248,6 +234,19 @@ public class FutureProof {
         checkAllAlarms();
     }
 
+
+    List<EntryAlarm> allAlarms = new ArrayList<EntryAlarm>();
+    public EntryAlarm createEntryAlarm(Entry thisEntry) {
+        EntryAlarm ea = new EntryAlarm(thisEntry);
+        //
+        ea.theChecker.checkTheTime();
+        //
+        if (!ea.theChecker.hasTimePassed()) {
+            allAlarms.add(ea);
+        }
+        //
+        return ea;
+    }
     public void checkAllAlarms() {
         boolean hasAntiquated = false;
 
@@ -283,6 +282,9 @@ public class FutureProof {
             theEvent.onAntiquate();
         }
     }
+    public void clearAllAlarms() {
+        allAlarms.clear();
+    }
 
     private FPEventListener theEvent;
     public void assignAlertResponder(FPEventListener thisListener) {
@@ -290,7 +292,9 @@ public class FutureProof {
     }
 
     public void uponUserLoggedIn() {
-        // TODO: Query Parse and add all relevant entries to lists...
+        clearAllAlarms();
+        //
+        loggedAccount.clearAllEntries();
         try {
             for (Entry anEntry : model.dataEntryGetAll(loggedUser)) {
                 this.submitEntryToListing(anEntry);

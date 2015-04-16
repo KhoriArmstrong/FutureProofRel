@@ -44,4 +44,10 @@ public class EntryDatabase {
             allPastEntries.add(thisEntry);
         }
     }
+
+
+    public void clearAllEntries() {
+        allPastEntries.clear();
+        allFutureEntries.clear();
+    }
 }

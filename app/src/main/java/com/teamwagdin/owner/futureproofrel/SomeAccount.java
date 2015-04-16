@@ -29,6 +29,7 @@ public class SomeAccount {
     public void antiquateEntry(Entry thisEntry) {
         entryDatabase.antiquateEntry(thisEntry);
     }
+    public void clearAllEntries() { entryDatabase.clearAllEntries(); }
 
 
     public String getUsername() {
